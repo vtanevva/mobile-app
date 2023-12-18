@@ -42,7 +42,6 @@
 // app.listen(port, () => {
 //   console.log(`Server is running on port ${port}`);
 // });
-// server.js
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
