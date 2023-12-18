@@ -37,6 +37,7 @@ const Register = () => {
   return (
     <div>
       <h2>Register</h2>
+      <form>
       <input
         type="text"
         placeholder="Username"
@@ -49,11 +50,15 @@ const Register = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      
       <button onClick={handleRegister} disabled={loading}>
         {loading ? 'Registering...' : 'Register'}
       </button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
+    </form>
     </div>
+    
+
   );
 };
 
