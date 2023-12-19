@@ -3,7 +3,7 @@ const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
 
 // Example API route (requires authentication)
-router.get('/data', authMiddleware, (req, res) => {
+router.get('/api', authMiddleware, (req, res) => {
   try {
     // Access user information from the request object (if needed)
     const user = req.user;
