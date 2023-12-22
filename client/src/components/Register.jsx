@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { registerUser } from '../api/api';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -7,32 +7,40 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleRegister = async () => {
-    try {
-      setLoading(true);
-      setError(null);
+  const apiUrl = process.env.API_URL; 
 
-        const response = await fetch('http://localhost:5174/api/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username, password }),
-        });
-
-        if (!response.ok) {
-          throw new Error('Registration failed');
-        }
-
-        const data = await response.json();
-        console.log(data);
+    const handleRegister = async () => {
+      try {
+        const result = await registerUser(username, password);
+        console.log('User registered:', result);
       } catch (error) {
-        setError('Registration failed. Please try again.');
-        console.error('Registration error:', error);
-      } finally {
-        setLoading(false);
+        console.error('Registration failed:', error.message);
       }
-  };
+    };
+    // try {
+    //   setLoading(true);
+    //   setError(null);
+
+    //     const response = await fetch(`${apiUrl}/register`, {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({ username, password }),
+    //     });
+
+    //     if (!response.ok) {
+    //       throw new Error('Registration failed');
+    //     }
+
+    //     const data = await response.json();
+    //     console.log(data);
+    //   } catch (error) {
+    //     setError('Registration failed. Please try again.');
+    //     console.error('Registration error:', error);
+    //   } finally {
+    //     setLoading(false);
+    //   }
 
   return (
     <div>
