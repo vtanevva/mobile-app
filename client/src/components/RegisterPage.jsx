@@ -8,20 +8,29 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // Set initial state to false
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
+    setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
   const handleRegister = async () => {
     try {
+      setLoading(true);
+      setError(null);
+
       const result = await registerUser(username, password);
       console.log('User registered:', result);
+
+      // Optionally, you can redirect the user to another page after successful registration
+      // history.push('/dashboard');
     } catch (error) {
       console.error('Registration failed:', error.message);
+      setError('Registration failed. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -53,34 +62,32 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
-            className="toggle-password"
-            type="button"
-            onClick={handleTogglePassword}
-          >
-            {showPassword ? (
-              <FontAwesomeIcon icon={faEyeSlash} />
-            ) : (
-              <FontAwesomeIcon icon={faEye} />
-            )}
-          </button>
+  className="toggle-password"
+  type="button"
+  onClick={handleTogglePassword}
+>
+  <i className={showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'}></i>
+</button>
+
         </div>
         <br />
         <h5 className="reset"></h5>
         <button
-          className="button login-button"
-          type="button"
-          onClick={handleRegister}
+          className="button register-button"
+          type="submit"
           disabled={loading}
         >
           {loading ? 'Registering...' : 'Register'}
         </button>
 
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button className="button skip"><Link to="/" className="grey-link">
-            Skip Now
-          </Link>
-          </button>
       </form>
+
+      <div className="button skip">
+        <Link to="/" className="grey-link">
+          Skip Now
+        </Link>
+      </div>
     </div>
   );
 };

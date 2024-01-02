@@ -60,16 +60,12 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
-            className="toggle-password"
-            type="button"
-            onClick={handleTogglePassword}
-          >
-            {showPassword ? (
-              <FontAwesomeIcon icon={faEyeSlash} />
-            ) : (
-              <FontAwesomeIcon icon={faEye} />
-            )}
-          </button>
+  className="toggle-password"
+  type="button"
+  onClick={handleTogglePassword}
+>
+  <i className={showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'}></i>
+</button>
         </div>
         <br />
         <h5 className="reset">
