@@ -1,14 +1,53 @@
-import React from 'react';
-import Login from './components/Login';
-import Register from './components/Register';
+// App.jsx
 
-const App = () => {
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage';
+import HomePage from './components/HomePage';
+
+function App() {
   return (
-    <div>
-      <Login />
-      <Register />
-    </div>
-  );
+//     <Router>
+//       <Routes>
+//       {/* Registration Page */}
+//       <Route path="/register" component={RegisterPage} />
+
+//       {/* Login Page */}
+//       <Route path="/login" component={LoginPage} />
+
+//       {/* Home Page (Protected Route) */}
+//       <Route path="/home">
+//         {/* Only allow access to home page if user is authenticated */}
+//         <PrivateRoute />
+//       </Route>
+
+//       {/* Default Redirect to Login */}
+//       <Route path="/">
+//         <LoginPage />
+//       </Route>
+//       </Routes>
+//     </Router>
+//   );
+// }
+
+// // PrivateRoute Component - Renders HomePage if authenticated, otherwise renders LoginPage
+// const PrivateRoute = () => {
+//   // Check if user is authenticated (you can implement your logic here)
+//   const isAuthenticated = true; // Replace with your authentication logic
+
+//   return isAuthenticated ? <HomePage /> : <LoginPage />;
+// };
+
+  <Router>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />      
+      <Route path="/register" element={<RegisterPage />} />
+
+    </Routes>
+  </Router>
+);
 };
 
-export default App;
+ export default App;
