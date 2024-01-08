@@ -84,7 +84,7 @@ const Register = () => {
       </form>
 
       <div className="button skip">
-        <Link to="/" className="grey-link">
+        <Link to="/game" className="grey-link">
           Skip Now
         </Link>
       </div>

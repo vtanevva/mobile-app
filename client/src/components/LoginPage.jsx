@@ -85,7 +85,7 @@ const Login = () => {
           <br />
           {error && <p style={{ color: 'red' }}>{error}</p>}
           <button className="button skip">
-            <Link to="/" className="grey-link">
+            <Link to="/game" className="grey-link">
               Skip Now
             </Link>
           </button>

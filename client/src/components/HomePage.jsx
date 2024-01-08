@@ -11,7 +11,11 @@ function HomePage() {
        <h2 className='title'>Millions of people <br></br> use to turn their <br></br>ideas into reality.</h2>
 
        <div className="buttons">
-         <button className="skip">Skip Now</button>
+       <button className=" skip">
+            <Link to="/game" className="grey-link">
+              Skip Now
+            </Link>
+          </button>
          <Link to="/login" className="black-link next">Next</Link>
  
        </div>
