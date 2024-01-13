@@ -45,8 +45,8 @@
   .login-img {
 	width: 30%;
 	height: 20vh;
-	position: absolute;
-	top: 14vh;
+	position: relative;
+	top: 4vh;
 	left: 35%;
 	background-image: url('./public/character.png');
 	font-weight: 550;
@@ -109,11 +109,11 @@ font-size: 0.8em;
   }
   .form-login {
 	position: relative;
-	top: 30vh;
+	top: 10.5vh;
   }
   .form-login .label {
 	position: relative;
-	top: 2vh;
+	top: 1.5vh;
 	left: 1vh;
 	font-weight: 600;
 	color: black ;
