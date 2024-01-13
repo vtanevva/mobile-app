@@ -4,6 +4,8 @@ import * as THREE from 'three';
 
 function Game() {
   const canvasContainerRef = useRef();
+  const gameEndedRef = useRef(false); // Ref to track game end
+  const scoreRef = useRef(0); // Ref to track the score
 
   useEffect(() => {
     console.clear();
@@ -41,6 +43,41 @@ function Game() {
 
     init();
 
+    function startGame() {
+      autopilot = false;
+      gameEndedRef.current = false; // Reset gameEndedRef
+      scoreRef.current = 0; // Reset scoreRef
+      lastTime = 0;
+      stack = [];
+      overhangs = [];
+
+      if (instructionsElement) instructionsElement.style.display = "none";
+      if (resultsElement) resultsElement.style.display = "none";
+      if (scoreElement) scoreElement.innerText = 0;
+
+      if (world) {
+        while (world.bodies.length > 0) {
+          world.remove(world.bodies[0]);
+        }
+      }
+
+      if (scene) {
+        while (scene.children.find((c) => c.type === "Mesh")) {
+          const mesh = scene.children.find((c) => c.type === "Mesh");
+          scene.remove(mesh);
+        }
+
+        addLayer(0, 0, originalBoxSize, originalBoxSize);
+
+        addLayer(-10, 0, originalBoxSize, originalBoxSize, "x");
+      }
+
+      if (camera) {
+        camera.position.set(4, 4, 4);
+        camera.lookAt(0, 0, 0);
+      }
+    }
+
     function setRobotPrecision() {
       robotPrecision = Math.random() * 1 - 0.5;
     }
@@ -64,6 +101,8 @@ function Game() {
       const width = 10;
       const height = width / aspect;
 
+
+      
       camera = new THREE.OrthographicCamera(
         width / -2,
         width / 2,
@@ -260,6 +299,53 @@ function Game() {
         missedTheSpot();
       }
     }
+    function gameEndedMessage() {
+      // Display the game-ended message
+      const message = document.createElement("div");
+      message.innerText = "Game Ended";
+      message.style.position = "absolute";
+      message.style.top = "50%";
+      message.style.left = "50%";
+      message.style.transform = "translate(-50%, -50%)";
+      message.style.fontSize = "2em";
+      message.style.color = "#ff0000"; // You can customize the color
+      message.style.display = "none";
+      message.id = "gameEndedMessage";
+      canvasContainerRef.current.appendChild(message);
+
+      // Display the restart button
+      const restartButton = document.createElement("button");
+      restartButton.innerText = "Restart";
+      restartButton.style.position = "absolute";
+      restartButton.style.top = "60%";
+      restartButton.style.left = "50%";
+      restartButton.style.transform = "translate(-50%, -50%)";
+      restartButton.style.padding = "10px";
+      restartButton.style.fontSize = "1em";
+      restartButton.style.cursor = "pointer";
+      restartButton.style.backgroundColor = "#4caf50"; // You can customize the color
+      restartButton.style.color = "#fff"; // You can customize the color
+      restartButton.style.display = "none";
+      restartButton.id = "restartButton";
+      restartButton.addEventListener("click", () => {
+        // Refresh the page on button click
+        window.location.reload();
+      });
+      canvasContainerRef.current.appendChild(restartButton);
+
+      // Update gameEndedRef to true
+      gameEndedRef.current = true;
+    }
+
+    function updateScore() {
+      if (scoreElement && !gameEndedRef.current) {
+        // Update the score display during the game
+        scoreRef.current = stack.length - 1;
+        scoreElement.innerText = scoreRef.current;
+
+      }
+    }
+
 
     function missedTheSpot() {
       const topLayer = stack[stack.length - 1];
@@ -275,8 +361,11 @@ function Game() {
 
       gameEnded = true;
       if (resultsElement && !autopilot) resultsElement.style.display = "flex";
+    
+      gameEndedMessage();
     }
-
+   
+    
     function animation(time) {
       if (lastTime) {
         const timePassed = time - lastTime;
@@ -313,8 +402,30 @@ function Game() {
 
         updatePhysics(timePassed);
         renderer.render(scene, camera);
+
+        // Show game-ended message and restart button only after the game ends
+        if (gameEndedRef.current) {
+          if (gameEndedRef.current && time > 2000) {
+            // Display the game-ended message and restart button
+            if (gameEndedRef.current) {
+              const message = document.querySelector("#gameEndedMessage");
+              if (message) {
+                message.style.display = "block";
+              }
+
+              const restartButton = document.querySelector("#restartButton");
+              if (restartButton) {
+                restartButton.style.display = "block";
+              }
+            }
+          }
+        }
+
+        // Update the score display during the game
+        updateScore();
       }
       lastTime = time;
+    
     }
 
     function updatePhysics(timePassed) {
