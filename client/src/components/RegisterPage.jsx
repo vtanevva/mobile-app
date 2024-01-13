@@ -16,7 +16,8 @@ const Register = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const handleRegister = async () => {
+  const handleRegister = async (event) => {
+    event.preventDefault()
     try {
       setLoading(true);
       setError(null);

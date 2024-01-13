@@ -19,6 +19,7 @@ router.get('/', authMiddleware, (req, res) => {
 
 // User registration endpoint
 router.post('/register', async (req, res) => {
+  console.log("register route")
   try {
     const { username, password } = req.body;
     const existingUser = await User.findOne({ username });

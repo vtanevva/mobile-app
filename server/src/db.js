@@ -1,14 +1,18 @@
 // server/src/db.js
 const mongoose = require('mongoose');
 
+
+const MONGODB_URI= "mongodb+srv://vanesataneva:vanesa@v.ynn3vea.mongodb.net"
+
 const connectDB = async () => {
   try {
-    const mongoURI = process.env.MONGODB_URI;
+    const mongoURI = MONGODB_URI;
+
 
     await mongoose.connect(mongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true,
+      // useCreateIndex: true,
     });
 
     console.log('Connected to MongoDB');

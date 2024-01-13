@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { loginUser } from '../api/api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 const Login = () => {
+  const navigate = useNavigate(); // Get the navigate function from react-router-dom
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -23,7 +24,8 @@ const Login = () => {
       setLoading(true);
       const result = await loginUser(username, password);
       console.log('Login successful:', result);
-      // Redirect to home page or perform other actions upon successful login
+      // Redirect to the '/game' route upon successful login
+      navigate('/game');
     } catch (error) {
       console.error('Login failed:', error.message);
       setError('Invalid, please try again.'); // Set error message for display
