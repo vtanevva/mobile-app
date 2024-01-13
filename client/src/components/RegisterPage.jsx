@@ -8,6 +8,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [showPassword, setShowPassword] = useState(false); // Set initial state to false
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -46,6 +47,14 @@ const Register = () => {
       </h5>
 
       <form className="form" onSubmit={handleRegister}>
+      <input
+        className="form-email"
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+
+        />
         <input
           className="form-username"
           type="text"

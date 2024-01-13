@@ -36,7 +36,8 @@ const Login = () => {
 
   return (
     <div className="main">
-      <h2 className="title">Hey, <br /> Login Now</h2>
+      <div className="back-button">back</div>
+      <h2 className="login-img"></h2>
       <h5 className="sub-title">
         If you are new /
         <Link to="/register" className="register-path">
@@ -45,6 +46,7 @@ const Login = () => {
       </h5>
 
       <form className="form form-login" onSubmit={handleLogin}>
+      
         <input
           className="form-username"
           type="text"

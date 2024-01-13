@@ -306,9 +306,12 @@ function Game() {
       message.style.position = "absolute";
       message.style.top = "50%";
       message.style.left = "50%";
+      message.style.border = "2px solid white";
+      message.style.padding = "1vh"
+      message.style.backgroundColor = "white";
       message.style.transform = "translate(-50%, -50%)";
       message.style.fontSize = "2em";
-      message.style.color = "#ff0000"; // You can customize the color
+      message.style.color = "#ff0000"; 
       message.style.display = "none";
       message.id = "gameEndedMessage";
       canvasContainerRef.current.appendChild(message);

@@ -5,18 +5,16 @@ import { Link } from 'react-router-dom';
 
 function HomePage() {
   return (
-    <div>
+    <div class="homepage">
        <div className="home-image"></div>
-       <h5 className="sub-title">Get started</h5>
-       <h2 className='title'>Millions of people <br></br> use to turn their <br></br>ideas into reality.</h2>
+       <h2 className='homepage-title'>Let's Get Started</h2>
 
        <div className="buttons">
+       <Link to="/register" className="black-link next">Sign Up</Link>
        <button className=" skip">
-            <Link to="/game" className="grey-link">
-              Skip Now
-            </Link>
+            <Link to="/login" className="grey-link">
+              Aready have an account? <span className="span-login"> Log in</span>            </Link>
           </button>
-         <Link to="/login" className="black-link next">Next</Link>
  
        </div>
     </div>
