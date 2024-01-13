@@ -38,16 +38,13 @@ const Register = () => {
 
   return (
     <div className="main">
-      <h2 className="title">Hey, <br /> Register Now</h2>
-      <h5 className="sub-title">
-        If you already have an account /
-        <Link to="/login" className="register-path">
-          Login
-        </Link>
-      </h5>
-
-      <form className="form" onSubmit={handleRegister}>
-      <input
+      <div className="overlay overlay-color">
+           <div className="back-button"> <Link className="back-button-a" to="/">back </Link> </div>
+      <h2 className=" register-img"></h2>
+      
+    
+      <form className="form form-register" onSubmit={handleRegister}>
+      <label className="label">Email</label><input
         className="form-email"
         type="email"
         placeholder="Email"
@@ -55,6 +52,8 @@ const Register = () => {
         onChange={(e) => setEmail(e.target.value)}
 
         />
+            <label className="label">Username</label>
+
         <input
           className="form-username"
           type="text"
@@ -63,6 +62,8 @@ const Register = () => {
           onChange={(e) => setUsername(e.target.value)}
         />{' '}
         <br />
+        <label className="label">Password</label>
+
         <div className="password-input">
           <input
             className="form-password"
@@ -82,22 +83,46 @@ const Register = () => {
         </div>
         <br />
         <h5 className="reset"></h5>
+        
         <button
           className="button register-button"
           type="submit"
           disabled={loading}
         >
-          {loading ? 'Registering...' : 'Register'}
+          {loading ? 'Signing Up...' : 'Sign Up'}
         </button>
 
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </form>
 
       <div className="button skip">
-        <Link to="/game" className="grey-link">
-          Skip Now
-        </Link>
+       
+        <div className="group-down group-down-r">
+            <div className="or ">
+                Or
+            </div>
+            <div className="networks networks-r">
+              <div className="network Google">
+
+              </div>
+              <div className="network Apple">
+
+              </div>
+              <div className="network Facebook">
+
+              </div>
+            </div>
+          </div>
+          <button className="button sign-up-register">
+            <Link to="/login" className="grey-link">
+              Already have an acoount? <span className="span-login">Sign In</span>
+            </Link>
+          </button>
+        
       </div>
+      
+      </div>
+      
     </div>
   );
 };

@@ -10,9 +10,9 @@ function HomePage() {
        <h2 className='homepage-title'>Let's Get Started</h2>
 
        <div className="buttons">
-       <Link to="/register" className="black-link next">Sign Up</Link>
+       <Link to="/register" className=" sign-up-home">Sign Up</Link>
        <button className=" skip">
-            <Link to="/login" className="grey-link">
+            <Link to="/login" className="grey-link grey-link-home">
               Aready have an account? <span className="span-login"> Log in</span>            </Link>
           </button>
  

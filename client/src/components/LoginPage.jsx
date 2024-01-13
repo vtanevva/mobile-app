@@ -36,17 +36,13 @@ const Login = () => {
 
   return (
     <div className="main">
-      <div className="back-button">back</div>
+      <div class="overlay overlay-color">
+      <div className="back-button"> <Link className="back-button-a" to="/">back </Link> </div>
       <h2 className="login-img"></h2>
-      <h5 className="sub-title">
-        If you are new /
-        <Link to="/register" className="register-path">
-          Create New
-        </Link>
-      </h5>
+      
 
       <form className="form form-login" onSubmit={handleLogin}>
-      
+      <label className="label">Username</label>
         <input
           className="form-username"
           type="text"
@@ -56,6 +52,7 @@ const Login = () => {
         />{' '}
         <br />
         <div className="password-input">
+          <label className="label">Password</label>
           <input
             className="form-password"
             type={showPassword ? 'text' : 'password'}
@@ -72,29 +69,40 @@ const Login = () => {
 </button>
         </div>
         <br />
-        <h5 className="reset">
-          Forgot password? /
-          <Link to="/register" className="register-path">
-            Reset
-          </Link>
-        </h5>
         <div className="login-buttons">
           <button
-            className="button login-button"
+            className=" login-button"
             type="submit"
             disabled={loading}
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? 'Signing in...' : 'Sign In'}
           </button>{' '}
           <br />
           {error && <p style={{ color: 'red' }}>{error}</p>}
+          <div className="group-down">
+            <div className="or">
+                Or
+            </div>
+            <div className="networks">
+              <div className="network Google">
+
+              </div>
+              <div className="network Apple">
+
+              </div>
+              <div className="network Facebook">
+
+              </div>
+            </div>
+          </div>
           <button className="button skip">
-            <Link to="/game" className="grey-link">
-              Skip Now
+            <Link to="/register" className="grey-link">
+              Don't have an acoount? <span className="span-login">Sign Up</span>
             </Link>
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 };
