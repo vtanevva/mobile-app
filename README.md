@@ -14,4 +14,14 @@
 
 ## 5. Login and Register pages
 - installment of Axios;
-- creation of Login.jsx and Register.jsx for making a request to the register endpoint using Axios.
+- creation of App.jsx, Login.jsx and Register.jsx for making a request to the register endpoint using Axios.
+
+## 6. Addition of routes
+- instalment of react-dom
+
+## 7. Instalment of Three and Canon libraries
+- creation of Game.jsx
+- creation of game-script.js
+
+## 8. Problem with the rendering of the <canvas> element 
+- modifying the game-script.js into the Game.jsx file 
