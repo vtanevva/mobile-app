@@ -1,8 +1,7 @@
 // import axios from 'axios';
-// client/src/api/api.js
-const apiUrl = 'http://localhost:5174/api'; // Make sure the path is correct
+const apiUrl = 'http://localhost:5173/api'; 
 
-export const registerUser = async (username, password) => {
+export const registerUser = async (username, password ) => {
   try {
     console.log('Requesting registration...');
     const response = await fetch(`${apiUrl}/register`, {

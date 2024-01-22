@@ -4,7 +4,7 @@ const { MongoClient } = require('mongodb');
 
 const secretKey = process.env.JWT_SECRET || '00100';
 
-const mongoURI = process.env.MONGODB_URI; // Use the MongoDB connection string from .env
+const mongoURI = "mongodb+srv://vanesataneva:vanesa@v.ynn3vea.mongodb.net/"
 
 const authMiddleware = async (req, res, next) => {
   let client; // Declare the client outside the try block for proper cleanup in the finally block
