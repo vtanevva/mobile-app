@@ -7,7 +7,7 @@ const authRoutes = require('./routes/authRoutes');
 const connectDB = require('./db');
 
 const app = express();
-const port = process.env.PORT || 5500; // Update the port
+const port = process.env.PORT || 3000; // Update the port
 const mongoURI = "mongodb+srv://vanesataneva:vanesa@v.ynn3vea.mongodb.net/"
 
 
@@ -28,7 +28,14 @@ app.use(express.json());
 app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
 
+
+app.get((req, res) => {
+  res.json({
+    test: 12
+  })
+})
+
 // Start the server
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+  console.log('Listening to port: ' + port)
+})

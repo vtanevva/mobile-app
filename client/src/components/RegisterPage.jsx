@@ -111,9 +111,9 @@ const Register = () => {
             </div>
           </div>
           <button className="button sign-up-register">
-            <Link to="/login" className="grey-link grey-link-register">
-              Already have an acoount? <span className="span-login">Sign In</span>
-            </Link>
+
+              Already have an acoount?             <Link to="/login" className="grey-link grey-link-register"><span className="span-login">Sign In</span></Link>
+            
           </button>
         
       </div>
